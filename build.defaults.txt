@@ -1,0 +1,10 @@
+# DO NOT MODIFY THIS FILE!
+# Use build.config.txt to change the path.
+
+set(PAWLIB_DIR
+	${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib
+)
+
+set(XERCES_DIR
+    ${CMAKE_HOME_DIRECTORY}/../xerces/src
+)

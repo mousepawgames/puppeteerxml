@@ -1,12 +1,35 @@
 # Specify the paths to the dependencies here.
 
-# PawLIB and CPGF are both at this location.
+# WARNING: DO NOT commit changes to this file to the repository!
+# Our CI system relies on these defaults.
+
+##### PAWLIB & CPGF #####
+
+# The path to PawLIB and CPGF.
+# The build system will look for 'lib/' and 'include/' at this location.
+
 set(PAWLIB_DIR
-	../../pawlib-git/pawlib
+	${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib
 )
 
-# Xerces source lives in the repository.
-# You may choose to specify another path to it if you wish.
+# The default is '${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib', which
+# assumes a copy of the pawlib git repository in the same directory as this
+# repository folder.
+# 'make ready' would need to be run in that repository to generate the
+# library.
+
+
+
+##### XERCES #####
+
+# The path to Xerces-C++.
+# The build system will look for '.libs/' and 'xercesc/' at this location.
+
 set(XERCES_DIR
-    ../xerces/src
+    ${CMAKE_HOME_DIRECTORY}/../xerces/src
 )
+
+# By default, Xerces-C++ 3.1 lives in this repository at
+# '${CMAKE_HOME_DIRECTORY}/../xerces/src'.
+# 'make xerces' would need to be run from the root of this repository to
+# generate the library.
