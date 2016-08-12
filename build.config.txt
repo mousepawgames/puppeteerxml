@@ -4,3 +4,9 @@
 set(PAWLIB_DIR
 	../../pawlib-git/pawlib
 )
+
+# Xerces source lives in the repository.
+# You may choose to specify another path to it if you wish.
+set(XERCES_DIR
+    ../xerces/src
+)

@@ -12,6 +12,7 @@ none:
 	@echo "   make library_debug Build PuppeteerXML as debug."
 	@echo "   make tester        Build PuppeteerXML Tester (+ PuppeteerXML) as release."
 	@echo "   make tester_debug  Build PuppeteerXML Tester (+ PuppeteerXML) as debug."
+	@echo "   make xerces        Auto-configures and builds Xerces."
 	@echo "   make all           Build everything."
 	@echo "   make allfresh      Clean and rebuild everything."
 	@echo
@@ -94,6 +95,14 @@ tester_debug: library_debug
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML Tester is in 'tester/bin/Debug'."
+	@echo "-------------"
+
+xerces:
+	./xerces/configure
+	$(MAKE) -C xerces/src
+	@echo "-------------"
+	@echo "<<<<<<< FINISHED >>>>>>>"
+	@echo "Xerces is in 'xerces'."
 	@echo "-------------"
 
 all: docs tester
