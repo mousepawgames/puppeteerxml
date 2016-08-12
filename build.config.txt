@@ -1,0 +1,6 @@
+# Specify the paths to the dependencies here.
+
+# PawLIB and CPGF are both at this location.
+set(PAWLIB_DIR
+	../../pawlib-git/pawlib
+)

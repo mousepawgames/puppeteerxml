@@ -1,0 +1,14 @@
+*.a
+*.o
+*.exe
+*.depend
+*.layout
+**/bin
+**/obj
+**/lib
+**/libs
+puppeteerxml/
+docs/build
+*.depend
+*.layout
+**/build_temp
