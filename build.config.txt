@@ -21,15 +21,12 @@
 # file name (before the .config). For example, passing the argument
 # "-DCONFIG_FILENAME=foo" would build using "foo.config".
 
+
 ##### PAWLIB & CPGF #####
-
-# The path to PawLIB and CPGF.
+#
+# This sets the path to PawLIB and CPGF.
 # The build system will look for 'lib/' and 'include/' at this location.
-
-set(PAWLIB_DIR
-	${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib
-)
-
+#
 # The default is '${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib', which
 # assumes a copy of the pawlib git repository in the same directory as this
 # repository folder.
@@ -37,17 +34,22 @@ set(PAWLIB_DIR
 # 'make ready' would need to be run in that repository to generate the
 # library.
 
-##### XERCES #####
-
-# The path to Xerces-C++.
-# The build system will look for '.libs/' and 'xercesc/' at this location.
-
-set(XERCES_DIR
-    ${CMAKE_HOME_DIRECTORY}/../xerces/src
+set(PAWLIB_DIR
+	${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib
 )
 
+
+##### XERCES #####
+#
+# This sets the path to the Xerces-C++ library.
+# The build system will look for '.libs/' and 'xercesc/' at this location.
+#
 # By default, Xerces-C++ 3.1 lives in this repository at
 # '${CMAKE_HOME_DIRECTORY}/../xerces/src'.
 #
 # 'make xerces' would need to be run from the root of this repository to
 # generate the library.
+
+set(XERCES_DIR
+    ${CMAKE_HOME_DIRECTORY}/../xerces/src
+)
