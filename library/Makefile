@@ -5,7 +5,7 @@ T_RELEASE = -DCMAKE_BUILD_TYPE=Release
 P_DEF_CONF = default.config
 P_CONF = -DCONFIG_FILENAME=
 ifneq ( , $(CONFIG))
-	P_CONF_PATH=$(CONFIG).config
+	P_CONF_PATH=$(CONFIG)
 else
 	P_CONF_PATH = $(P_DEF_CONF)
 endif

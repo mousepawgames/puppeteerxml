@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.1)
 #Name your project here
 project("PuppeteerXML Tester")
 
-message("Using ${CONFIG_FILENAME}")
-include(${CMAKE_HOME_DIRECTORY}/../${CONFIG_FILENAME})
+message("Using ${CONFIG_FILENAME}.config")
+include(${CMAKE_HOME_DIRECTORY}/../${CONFIG_FILENAME}.config)
 
 # Compiler and Version check...
 # Allow GCC 5.x
