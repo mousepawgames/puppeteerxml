@@ -1,7 +1,9 @@
 # Specify the paths to the dependencies here.
 
-# WARNING: DO NOT commit changes to this file to the repository!
-# Our CI system relies on these defaults.
+# NOTE: ${CMAKE_HOME_DIRECTORY} is a special variable which points to
+# either the 'library/' or 'tester/' folder, depending on which one is
+# being built. Relative paths should always begin with this variable,
+# and should be relative to either of those folders.
 
 ##### PAWLIB & CPGF #####
 

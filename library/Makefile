@@ -2,7 +2,9 @@ CMAKE = cmake ../.. -G"Unix Makefiles"
 T_DEBUG = -DCMAKE_BUILD_TYPE=Debug
 T_RELEASE = -DCMAKE_BUILD_TYPE=Release
 
-CONFIG = -PATH_CONFIG_FILE="build.config.txt"
+P_DEF_CONF = default.config
+P_CONF_PATH = $(P_DEF_CONF)
+P_CONF = -DCONFIG_FILENAME=
 
 MK_DIR = @cmake -E make_directory
 CH_DIR = @cmake -E chdir
@@ -24,13 +26,25 @@ none:
 	@echo "  make cleanrelease"
 	@echo
 	@echo "Optional Architecture"
-	@echo "  ARCH=32	Make x86 build (-m32)"
-	@echo "  ARCH=64	Make x64 build (-m64)"
+	@echo "  ARCH=32         Make x86 build (-m32)"
+	@echo "  ARCH=64	     Make x64 build (-m64)"
+	@echo
+	@echo "Use Configuration File"
+	@echo "  CONFIG=foo      Uses the configuration file 'foo.config'"
+	@echo "                  in the root of this repository."
+	@echo "  When unspecified, default.config will be used."
 
 archswitch:
 ifneq ( , $(ARCH))
 	@echo "Targeting $(ARCH)-bit architecture."
 	CC="gcc -m$(ARCH)" CXX="g++ -m$(ARCH)"
+endif
+
+confswitch:
+ifneq ( , $(CONFIG))
+	@echo "Using the configuration file $(CONFIG).config."
+	P_CONF_PATH=$(CONFIG).config
+	@echo
 endif
 
 clean:
@@ -45,14 +59,14 @@ cleanrelease:
 	@cmake -E remove_directory $(BUILD_DIR)/Release
 	@cmake -E remove_directory $(TEMP_DIR)/Release
 
-debug: archswitch
+debug: archswitch confswitch
 	$(MK_DIR) $(TEMP_DIR)/Debug$(ARCH)
-	$(CH_DIR) $(TEMP_DIR)/Debug$(ARCH) $(CMAKE) $(T_DEBUG)
+	$(CH_DIR) $(TEMP_DIR)/Debug$(ARCH) $(CMAKE) $(T_DEBUG) $(P_CONF)$(P_CONF_PATH)
 	$(EXEC_BUILD)/Debug$(ARCH) make $(TARGET)
 
-release: archswitch
+release: archswitch confswitch
 	$(MK_DIR) $(TEMP_DIR)/Release$(ARCH)
-	$(CH_DIR) $(TEMP_DIR)/Release$(ARCH) $(CMAKE) $(T_RELEASE)
+	$(CH_DIR) $(TEMP_DIR)/Release$(ARCH) $(CMAKE) $(T_RELEASE) $(P_CONF)$(P_CONF_PATH)
 	$(EXEC_BUILD)/Release$(ARCH) make $(TARGET)
 
-.PHONY: clean cleandebug cleanrelease archswitch
+.PHONY: clean cleandebug cleanrelease archswitch confswitch

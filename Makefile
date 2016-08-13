@@ -20,6 +20,11 @@ none:
 	@echo "  ARCH=32	Make x86 build (-m32)"
 	@echo "  ARCH=64	Make x64 build (-m64)"
 	@echo
+	@echo "Use Configuration File"
+	@echo "  CONFIG=foo      Uses the configuration file 'foo.config'"
+	@echo "                  in the root of this repository."
+	@echo "  When unspecified, default.config will be used."
+	@echo
 	@echo "For other build options, see the 'make' command in 'docs/', 'library/', and 'tester/'."
 
 clean:
@@ -52,14 +57,14 @@ docs_pdf:
 	@echo "-------------"
 
 library:
-	$(MAKE) release ARCH=$(ARCH) -C library
+	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C library
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML is in 'library/lib/Release'."
 	@echo "-------------"
 
 library_debug:
-	$(MAKE) debug ARCH=$(ARCH) -C library
+	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) -C library
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML is in 'library/lib/Debug'."
@@ -83,7 +88,7 @@ ready: docs_pdf library
 	@echo "-------------"
 
 tester: library
-	$(MAKE) release ARCH=$(ARCH) -C tester
+	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML Tester is in 'tester/bin/Release'."
@@ -91,7 +96,7 @@ tester: library
 
 
 tester_debug: library_debug
-	$(MAKE) debug ARCH=$(ARCH) -C tester
+	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML Tester is in 'tester/bin/Debug'."
