@@ -11,7 +11,9 @@ Authors
 
 Dependencies
 -------------
-PuppeteerXML uses Xerces, which is included in this repository.
+- PawLIB: Available from [Github][6].
+- CPGF: Included with PawLIB.
+- Xerces-C++: For convenience, the source for this library is included in this repository.
 
 Building
 --------------
@@ -41,3 +43,4 @@ The project is owned and maintained by [MousePaw Games][2].
 [3]: http://www.mousepawgames.com/opensource#contribute
 [4]: http://www.mousepawgames.com/termsofdevelopment
 [5]: http://github.com/mousepawgames/puppeteerxml
+[6]: http://github.com/mousepawgames/pawlib

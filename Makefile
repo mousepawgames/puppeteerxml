@@ -2,6 +2,7 @@ none:
 	@echo "=== PuppeteerXML 1.0 ==="
 	@echo "Select a build target:"
 	@echo "   make ready         Build PuppeteerXML and docs, and bundles them for distribution."
+	@echo "   make readyall      Build PuppeteerXML, Xerces, and docs, and bundles them for distribution."
 	@echo "   make clean         Clean up PuppeteerXML and Tester."
 	@echo "   make cleanall      Clean up everything."
 	@echo "   make cleandebug    Clean up PuppeteerXML and Tester Debug."
@@ -78,10 +79,19 @@ ready: docs_pdf library
 	@cp -r library/include puppeteerxml/
 	@cp library/lib/Release/libpuppeteerxml.a puppeteerxml/lib/libpuppeteerxml.a
 	@echo "Copying PDF Documentation..."
-	@cp docs/build/latex/PuppeteerXML.pdf pawlib/PuppeteerXML.pdf
+	@cp docs/build/latex/PuppeteerXML.pdf puppeteerxml/PuppeteerXML.pdf
 	@echo "Copying README and LICENSE..."
 	@cp README.md puppeteerxml/README.md
 	@cp LICENCE.md puppeteerxml/LICENCE.md
+	@echo "-------------"
+	@echo "<<<<<<< FINISHED >>>>>>>"
+	@echo "The library and docs are in 'puppeteerxml'."
+	@echo "-------------"
+
+readyall: xerces ready
+	@echo "Copying Xerces..."
+	@cp -r xerces/src/xercesc puppeteerxml/include/xercesc
+	@cp xerces/src/.libs/* puppeteerxml/lib
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "The libraries and docs are in 'puppeteerxml'."

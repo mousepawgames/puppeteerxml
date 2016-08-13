@@ -2,7 +2,7 @@ CMAKE = cmake ../.. -G"Unix Makefiles"
 T_DEBUG = -DCMAKE_BUILD_TYPE=Debug
 T_RELEASE = -DCMAKE_BUILD_TYPE=Release
 
-P_DEF_CONF = default.config
+P_DEF_CONF = default
 P_CONF = -DCONFIG_FILENAME=
 ifneq ( , $(CONFIG))
 	P_CONF_PATH=$(CONFIG)
