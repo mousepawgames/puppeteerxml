@@ -3,8 +3,12 @@ T_DEBUG = -DCMAKE_BUILD_TYPE=Debug
 T_RELEASE = -DCMAKE_BUILD_TYPE=Release
 
 P_DEF_CONF = default.config
-P_CONF_PATH = $(P_DEF_CONF)
 P_CONF = -DCONFIG_FILENAME=
+ifneq ( , $(CONFIG))
+	P_CONF_PATH=$(CONFIG).config
+else
+	P_CONF_PATH = $(P_DEF_CONF)
+endif
 
 MK_DIR = @cmake -E make_directory
 CH_DIR = @cmake -E chdir
@@ -40,13 +44,6 @@ ifneq ( , $(ARCH))
 	CC="gcc -m$(ARCH)" CXX="g++ -m$(ARCH)"
 endif
 
-confswitch:
-ifneq ( , $(CONFIG))
-	@echo "Using the configuration file $(CONFIG).config."
-	P_CONF_PATH=$(CONFIG).config
-	@echo
-endif
-
 clean:
 	@cmake -E remove_directory $(BUILD_DIR)
 	@cmake -E remove_directory $(TEMP_DIR)
@@ -59,14 +56,14 @@ cleanrelease:
 	@cmake -E remove_directory $(BUILD_DIR)/Release
 	@cmake -E remove_directory $(TEMP_DIR)/Release
 
-debug: archswitch confswitch
+debug: archswitch
 	$(MK_DIR) $(TEMP_DIR)/Debug$(ARCH)
 	$(CH_DIR) $(TEMP_DIR)/Debug$(ARCH) $(CMAKE) $(T_DEBUG) $(P_CONF)$(P_CONF_PATH)
 	$(EXEC_BUILD)/Debug$(ARCH) make $(TARGET)
 
-release: archswitch confswitch
+release: archswitch
 	$(MK_DIR) $(TEMP_DIR)/Release$(ARCH)
 	$(CH_DIR) $(TEMP_DIR)/Release$(ARCH) $(CMAKE) $(T_RELEASE) $(P_CONF)$(P_CONF_PATH)
 	$(EXEC_BUILD)/Release$(ARCH) make $(TARGET)
 
-.PHONY: clean cleandebug cleanrelease archswitch confswitch
+.PHONY: clean cleandebug cleanrelease archswitch
