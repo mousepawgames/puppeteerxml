@@ -32,10 +32,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Our global compiler flags. We want the compiler to treat
 # all warnings as errors. This project's code should always
 # compile clean!
-# add_definitions(-Wall -Wextra -Werror)
-
-# NOTE: Temporarily bypassing -Werror
-add_definitions(-Wall -Wextra)
+add_definitions(-Wall -Wextra -Werror)
 
 # Set debug flags. -g is a default.
 #set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ")

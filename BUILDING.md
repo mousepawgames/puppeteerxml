@@ -48,6 +48,11 @@ Building Tester
 If you want to test out PuppeteerXML directly, run "make tester". Then, look
 for the puppeteerxml-tester executable in tester/bin/[Debug/Release].
 
+Code::Blocks
+---------------------
+PuppeteerXML was written and built in CodeBlocks. The projects (.cbp) in this
+repository are pre-configured to build directly in the repository.
+
 Source Directories
 ---------------------
 - The '/docs' folder contains the Sphinx documentation for PuppeteerXML.

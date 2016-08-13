@@ -26,7 +26,7 @@ none:
 	@echo "                  in the root of this repository."
 	@echo "  When unspecified, default.config will be used."
 	@echo
-	@echo "For other build options, see the 'make' command in 'docs/', 'library/', and 'tester/'."
+	@echo "For other build options, see the 'make' command in 'docs/', 'library/', 'tester/', and 'xerces/'."
 
 clean:
 	$(MAKE) clean -C library
