@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# PawLIB documentation build configuration file, created by
+# PuppeteerXML documentation build configuration file, created by
 # sphinx-quickstart on Wed May 25 19:52:16 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'PawLIB'
+project = 'PuppeteerXML'
 copyright = '2016, MousePaw Games'
 author = 'MousePaw Games'
 
@@ -130,7 +130,7 @@ html_theme_path = ["_themes", ]
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = "pawlib_weblogo.png"
+html_logo = "puppeteerxml_weblogo.png"
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -203,7 +203,7 @@ html_static_path = ['.static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PawLIBdoc'
+htmlhelp_basename = 'puppeterxmldoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -225,7 +225,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PawLIB.tex', 'PawLIB Documentation',
+    (master_doc, 'PuppeteerXML.tex', 'PuppeteerXML Documentation',
      'MousePaw Games', 'manual'),
 ]
 
@@ -255,7 +255,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pawlib', 'PawLIB Documentation',
+    (master_doc, 'puppeteerxml', 'PuppeteerXML Documentation',
      [author], 1)
 ]
 
@@ -269,8 +269,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'PawLIB', 'PawLIB Documentation',
-     author, 'PawLIB', 'One line description of project.',
+    (master_doc, 'PuppeteerXML', 'PuppeteerXML Documentation',
+     author, 'PuppeteerXML', 'One line description of project.',
      'Miscellaneous'),
 ]
 

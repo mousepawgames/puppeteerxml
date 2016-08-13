@@ -13,6 +13,21 @@ on another system, you can interact with CMake directly.
 Currently, PuppeteerXML can only be built using GCC 5 or later (or a compiler
 that can emulate that).
 
+Building and Linking Dependencies
+-----------------------------------
+PuppeteerXML relies on CPGF, PawLIB, and Xerces-C++. The default behavior is
+for the build system to look in the repository's "xerces/src" folder for Xerces,
+and in a 'pawlib-git/pawlib' folder in the same directory as this repository.
+(This is our default for company development environments.)
+
+You can specify custom paths for these libraries by creating a ".config" file
+in the root of this repository. Make a copy of "build.config.txt" and save it
+with the ending ".config". See that file for more information.
+
+Xerces can be built locally using the "make xerces" command from the root
+repository. For more control, use the "./configure" and "make" commands in
+the "xerces/" directory.
+
 Ready-To-Use Build
 --------------------
 If you just want to build PuppeteerXML to use in your own project, the fastest way
@@ -33,11 +48,6 @@ Building Tester
 If you want to test out PuppeteerXML directly, run "make tester". Then, look
 for the puppeteerxml-tester executable in tester/bin/[Debug/Release].
 
-Code::Blocks
----------------------
-PuppeteerXML was written and built in CodeBlocks. The projects (.cbp) in this
-repository are pre-configured to build directly in the repository.
-
 Source Directories
 ---------------------
 - The '/docs' folder contains the Sphinx documentation for PuppeteerXML.
@@ -45,3 +55,4 @@ Source Directories
   library.
 - The '/tester' folder contains the console application for testing
   the PuppeteerXML library.
+- The '/xerces' folder contains the source for the Xerces C++ library.
