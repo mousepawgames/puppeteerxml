@@ -1,8 +1,8 @@
 none:
 	@echo "=== PuppeteerXML 1.0 ==="
 	@echo "Select a build target:"
-	@echo "   make ready         Build PuppeteerXML and docs, and bundles them for distribution."
-	@echo "   make readyall      Build PuppeteerXML, Xerces, and docs, and bundles them for distribution."
+	@echo "   make ready         Build PuppeteerXML and bundle it for distribution."
+	@echo "   make readyall      Build PuppeteerXML and Xerces and bundle them for distribution."
 	@echo "   make clean         Clean up PuppeteerXML and Tester."
 	@echo "   make cleanall      Clean up everything."
 	@echo "   make cleandebug    Clean up PuppeteerXML and Tester Debug."
@@ -71,21 +71,19 @@ library_debug:
 	@echo "PuppeteerXML is in 'library/lib/Debug'."
 	@echo "-------------"
 
-ready: docs_pdf library
+ready: library
 	@rm -rf puppeteerxml
 	@echo "Creating file structure..."
 	@mkdir -p puppeteerxml/lib
 	@echo "Copying PuppeteerXML..."
 	@cp -r library/include puppeteerxml/
 	@cp library/lib/Release/libpuppeteerxml.a puppeteerxml/lib/libpuppeteerxml.a
-	@echo "Copying PDF Documentation..."
-	@cp docs/build/latex/PuppeteerXML.pdf puppeteerxml/PuppeteerXML.pdf
 	@echo "Copying README and LICENSE..."
 	@cp README.md puppeteerxml/README.md
 	@cp LICENCE.md puppeteerxml/LICENCE.md
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "The library and docs are in 'puppeteerxml'."
+	@echo "The library is in 'puppeteerxml'."
 	@echo "-------------"
 
 readyall: xerces ready
@@ -94,22 +92,28 @@ readyall: xerces ready
 	@cp xerces/src/.libs/* puppeteerxml/lib
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "The libraries and docs are in 'puppeteerxml'."
+	@echo "The libraries are in 'puppeteerxml'."
 	@echo "-------------"
 
 tester: library
 	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
+	@rm -f tester
+	@ln -s simplexpress-tester/bin/Release/puppeteerxml-tester tester
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML Tester is in 'tester/bin/Release'."
+	@echo "The link './tester' has been created for convenience."
 	@echo "-------------"
 
 
 tester_debug: library_debug
 	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
+	@rm -f tester_debug
+	@ln -s simplexpress-tester/bin/Debug/puppeteerxml-tester tester_debug
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "PuppeteerXML Tester is in 'tester/bin/Debug'."
+	@echo "The link './tester_debug' has been created for convenience."
 	@echo "-------------"
 
 xerces:
