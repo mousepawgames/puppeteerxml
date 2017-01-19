@@ -2,18 +2,15 @@ none:
 	@echo "=== PuppeteerXML 1.0 ==="
 	@echo "Select a build target:"
 	@echo "   make ready         Build PuppeteerXML and bundle it for distribution."
-	@echo "   make readyall      Build PuppeteerXML and Xerces and bundle them for distribution."
+	@echo
 	@echo "   make clean         Clean up PuppeteerXML and Tester."
-	@echo "   make cleanall      Clean up everything."
 	@echo "   make cleandebug    Clean up PuppeteerXML and Tester Debug."
 	@echo "   make cleanrelease  Clean up PuppeteerXML and Tester Release."
 	@echo "   make docs          Generate HTML docs."
-	@echo "   make docs_pdf      Generate PDF docs."
 	@echo "   make library       Build PuppeteerXML as release."
 	@echo "   make library_debug Build PuppeteerXML as debug."
 	@echo "   make tester        Build PuppeteerXML Tester (+ PuppeteerXML) as release."
 	@echo "   make tester_debug  Build PuppeteerXML Tester (+ PuppeteerXML) as debug."
-	@echo "   make xerces        Auto-configures and builds Xerces."
 	@echo "   make all           Build everything."
 	@echo "   make allfresh      Clean and rebuild everything."
 	@echo
@@ -26,7 +23,7 @@ none:
 	@echo "                  in the root of this repository."
 	@echo "  When unspecified, default.config will be used."
 	@echo
-	@echo "For other build options, see the 'make' command in 'docs/', 'library/', 'tester/', and 'xerces/'."
+	@echo "For other build options, see the 'make' command in 'docs/', 'library/', and 'tester/'."
 
 clean:
 	$(MAKE) clean -C library
@@ -86,15 +83,6 @@ ready: library
 	@echo "The library is in 'puppeteerxml'."
 	@echo "-------------"
 
-readyall: xerces ready
-	@echo "Copying Xerces..."
-	@cp -r xerces/src/xercesc puppeteerxml/include/xercesc
-	@cp xerces/src/.libs/* puppeteerxml/lib
-	@echo "-------------"
-	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "The libraries are in 'puppeteerxml'."
-	@echo "-------------"
-
 tester: library
 	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
 	@rm -f tester
@@ -116,16 +104,8 @@ tester_debug: library_debug
 	@echo "The link './tester_debug' has been created for convenience."
 	@echo "-------------"
 
-xerces:
-	./xerces/configure
-	$(MAKE) -C xerces/src
-	@echo "-------------"
-	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "Xerces is in 'xerces'."
-	@echo "-------------"
-
 all: docs tester
 
 allfresh: cleanall all
 
-.PHONY: all allfresh clean cleanall cleandebug cleanrelease docs docs_pdf library library_debug ready tester tester_debug
+.PHONY: all allfresh clean cleandebug cleanrelease docs docs_pdf library library_debug ready tester tester_debug
