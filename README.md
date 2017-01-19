@@ -1,5 +1,4 @@
-PuppeteerXML
-=====================
+# PuppeteerXML
 
 **PuppeteerXML** is a "just-works" library for reading from and writing to
 XML files. It uses Xerces as a back-end, while providing a simple, friendly
