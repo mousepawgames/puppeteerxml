@@ -1,7 +1,7 @@
 # PuppeteerXML
 
 **PuppeteerXML** is a "just-works" library for reading from and writing to
-XML files. It uses Xerces as a back-end, while providing a simple, friendly
+XML files. It uses pugixml as a back-end, while providing a simple, friendly
 API to the end-developer.
 
 ## Authors

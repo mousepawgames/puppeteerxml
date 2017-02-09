@@ -15,7 +15,7 @@ Clang (3.4 or later).
 ## Building and Linking Dependencies
 
 PuppeteerXML relies on CPGF, PawLIB, and pugixml. The build system's default
-behavior is to look for MousePaw Games' `pawlib-git/` and `lib-git/` repositories,
+behavior is to look for MousePaw Games' `pawlib/` and `libdeps/` repositories,
 cloned parallel to this repository's main folder. Simply run `make ready` in each
 of those repositories before building this one.
 (This is our default for company development environments.)
