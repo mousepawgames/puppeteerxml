@@ -4,35 +4,35 @@
 XML files. It uses Xerces as a back-end, while providing a simple, friendly
 API to the end-developer.
 
-Authors
--------------
+## Authors
+
  - Nate Groggett
 
-Dependencies
--------------
-- PawLIB: Available from [Github][6].
-- CPGF: Included with PawLIB.
-- Xerces-C++: For convenience, the source for this library is included in this repository.
+## Dependencies
 
-Building
---------------
+- PawLIB: Available from [Github][6].
+- CPGF
+- pugixml
+
+## Building
+
 If you have the full source repository, see BUILDING.md for information
 on how to build PuppeteerXML.
 
 The Ready-To-Use version of PuppeteerXML only contains the folders 'include'
 and 'lib'. You can find the full source repository on [Github][5].
 
-Contributions
--------------
-We do not accept pull requests through GitHub.
+## Contributions
+
+We do NOT accept pull requests through GitHub.
 If you would like to contribute code, please read our
 [Contribution Guide][3].
 
 All contributions are licensed to us under the
 [MousePaw Games Terms of Development][4].
 
-License
--------------
+## License
+
 PuppeteerXML is licenced under the BSD-3 License. (See LICENCE.md)
 
 The project is owned and maintained by [MousePaw Games][2].
@@ -42,4 +42,4 @@ The project is owned and maintained by [MousePaw Games][2].
 [3]: http://www.mousepawgames.com/opensource#contribute
 [4]: http://www.mousepawgames.com/termsofdevelopment
 [5]: http://github.com/mousepawgames/puppeteerxml
-[6]: http://github.com/mousepawgames/pawlib
+[6]: http://github.com/mousepawgames/puppeteerxml-git

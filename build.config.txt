@@ -26,18 +26,18 @@
 # This sets the path to CPGF and pugixml.
 # The build system will look for `lib/` and `include/' at this location.
 #
-# The default for all is '${CMAKE_HOME_DIRECTORY}/../../lib-git/libs', which
-# assumes a copy of the lib-git repository in the same directory as this
+# The default for all is '${CMAKE_HOME_DIRECTORY}/../../libdeps/lib', which
+# assumes a copy of the libdeps repository in the same directory as this
 # repository folder.
 #
-# 'make <library>' or 'make all' would need to be run in lib-git first.
+# 'make <library>' or 'make all' would need to be run in libdeps first.
 
 set(CPGF_DIR
-	${CMAKE_HOME_DIRECTORY}/../../lib-git/libs
+	${CMAKE_HOME_DIRECTORY}/../../libdeps/libs
 )
 
 set(PUGIXML_DIR
-	${CMAKE_HOME_DIRECTORY}/../../lib-git/libs
+	${CMAKE_HOME_DIRECTORY}/../../libdeps/libs
 )
 
 ##### PAWLIB #####
@@ -45,7 +45,7 @@ set(PUGIXML_DIR
 # This sets the path to PawLIB.
 # The build system will look for 'lib/' and 'include/' at this location.
 #
-# The default is '${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib', which
+# The default is '${CMAKE_HOME_DIRECTORY}/../../pawlib/pawlib', which
 # assumes a copy of the pawlib git repository in the same directory as this
 # repository folder.
 #
@@ -53,7 +53,7 @@ set(PUGIXML_DIR
 # library.
 
 set(PAWLIB_DIR
-	${CMAKE_HOME_DIRECTORY}/../../pawlib-git/pawlib
+	${CMAKE_HOME_DIRECTORY}/../../pawlib/pawlib
 )
 
 ##### LLVM LIBC++ #####
