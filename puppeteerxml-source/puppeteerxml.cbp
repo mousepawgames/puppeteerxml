@@ -4,7 +4,7 @@
 	<Project>
 		<Option title="puppeteerxml" />
 		<Option makefile_is_custom="1" />
-		<Option execution_dir="/home/jason/Code/Repositories/puppeteerxml-git/" />
+		<Option execution_dir="../../puppeteerxml" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -17,12 +17,12 @@
 					<Add option="-g" />
 				</Compiler>
 				<MakeCommands>
-					<Build command="$make library_debug" />
+					<Build command="$make puppeteerxml_debug" />
 					<CompileFile command="" />
 					<Clean command="$make cleandebug" />
 					<DistClean command="$make -f $makefile distclean$target" />
 					<AskRebuildNeeded command="" />
-					<SilentBuild command="$make library_debug &gt; $(CMD_NULL)" />
+					<SilentBuild command="$make puppeteerxml_debug &gt; $(CMD_NULL)" />
 				</MakeCommands>
 			</Target>
 			<Target title="Release">
@@ -37,12 +37,12 @@
 					<Add option="-s" />
 				</Linker>
 				<MakeCommands>
-					<Build command="$make library" />
+					<Build command="$make puppeteerxml" />
 					<CompileFile command="" />
 					<Clean command="$make cleanrelease" />
 					<DistClean command="$make -f $makefile distclean$target" />
 					<AskRebuildNeeded command="" />
-					<SilentBuild command="$make library &gt; $(CMD_NULL)" />
+					<SilentBuild command="$make puppeteerxml &gt; $(CMD_NULL)" />
 				</MakeCommands>
 			</Target>
 		</Build>
