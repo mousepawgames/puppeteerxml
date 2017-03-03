@@ -1,18 +1,25 @@
 none:
 	@echo "=== PuppeteerXML 1.0 ==="
 	@echo "Select a build target:"
-	@echo "   make ready         Build PuppeteerXML and bundle it for distribution."
+	@echo "   make ready                Build PuppeteerXML and bundle it for distribution."
 	@echo
-	@echo "   make clean         Clean up PuppeteerXML and Tester."
-	@echo "   make cleandebug    Clean up PuppeteerXML and Tester Debug."
-	@echo "   make cleanrelease  Clean up PuppeteerXML and Tester Release."
-	@echo "   make docs          Generate HTML docs."
-	@echo "   make library       Build PuppeteerXML as release."
-	@echo "   make library_debug Build PuppeteerXML as debug."
-	@echo "   make tester        Build PuppeteerXML Tester (+ PuppeteerXML) as release."
-	@echo "   make tester_debug  Build PuppeteerXML Tester (+ PuppeteerXML) as debug."
-	@echo "   make all           Build everything."
-	@echo "   make allfresh      Clean and rebuild everything."
+	@echo "   make clean                Clean up PuppeteerXML and Tester."
+	@echo "   make cleandebug           Clean up PuppeteerXML and Tester Debug."
+	@echo "   make cleanrelease         Clean up PuppeteerXML and Tester Release."
+	@echo "   make docs                 Generate HTML docs."
+	@echo "   make puppeteerxml         Build PuppeteerXML as release."
+	@echo "   make puppeteerxml_debug   Build PuppeteerXML as debug."
+	@echo "   make tester               Build PuppeteerXML Tester (+ PuppeteerXML) as release."
+	@echo "   make tester_debug         Build PuppeteerXML Tester (+ PuppeteerXML) as debug."
+	@echo "   make all                  Build everything."
+	@echo "   make allfresh             Clean and rebuild everything."
+	@echo
+	@echo "Clang Sanitizers (requires Debug build and Clang.)"
+	@echo "  SAN=address     Use AddressSanitizer"
+	@echo "  SAN=leak        Use LeakSanitizer w/o AddressSanitizer (Linux only)"
+	@echo "  SAN=memory      Use MemorySanitizer"
+	@echo "  SAN=thread      Use ThreadSanitizer"
+	@echo "  SAN=undefined   Use UndefiniedBehaviorSanitizer"
 	@echo
 	@echo "Optional Architecture (only when building PuppeteerXML or Tester)"
 	@echo "  ARCH=32	Make x86 build (-m32)"
@@ -23,22 +30,22 @@ none:
 	@echo "                  in the root of this repository."
 	@echo "  When unspecified, default.config will be used."
 	@echo
-	@echo "For other build options, see the 'make' command in 'docs/', 'library/', and 'tester/'."
+	@echo "For other build options, see the 'make' command in 'docs/', 'puppeteerxml-source/', and 'puppeteerxml-tester/'."
 
 clean:
-	$(MAKE) clean -C library
-	$(MAKE) clean -C tester
+	$(MAKE) clean -C puppeteerxml-source
+	$(MAKE) clean -C puppeteerxml-tester
 
 cleanall: clean
 	$(MAKE) clean -C docs
 
 cleandebug:
-	$(MAKE) cleandebug -C library
-	$(MAKE) cleandebug -C tester
+	$(MAKE) cleandebug -C puppeteerxml-source
+	$(MAKE) cleandebug -C puppeteerxml-tester
 
 cleanrelease:
-	$(MAKE) cleanrelease -C library
-	$(MAKE) cleanrelease -C tester
+	$(MAKE) cleanrelease -C puppeteerxml-source
+	$(MAKE) cleanrelease -C puppeteerxml-tester
 
 docs:
 	$(MAKE) html -C docs
@@ -54,18 +61,18 @@ docs_pdf:
 	@echo "View docs at 'docs/build/latex/PawLIB.pdf'."
 	@echo "-------------"
 
-library:
-	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C library
+puppeteerxml:
+	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C puppeteerxml-source
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "PuppeteerXML is in 'library/lib/Release'."
+	@echo "PuppeteerXML is in 'puppeteerxml-library/lib/Release'."
 	@echo "-------------"
 
-library_debug:
-	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) -C library
+puppeteerxml_debug:
+	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) SAN=$(SAN) -C puppeteerxml-source
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "PuppeteerXML is in 'library/lib/Debug'."
+	@echo "PuppeteerXML is in 'puppeteerxml-library/lib/Debug'."
 	@echo "-------------"
 
 ready: library
@@ -73,34 +80,33 @@ ready: library
 	@echo "Creating file structure..."
 	@mkdir -p puppeteerxml/lib
 	@echo "Copying PuppeteerXML..."
-	@cp -r library/include puppeteerxml/
-	@cp library/lib/Release/libpuppeteerxml.a puppeteerxml/lib/libpuppeteerxml.a
+	@cp -r puppeteerxml-source/include puppeteerxml/
+	@cp puppeteerxml-source/lib/Release/libpuppeteerxml.a puppeteerxml/lib/libpuppeteerxml.a
 	@echo "Copying README and LICENSE..."
 	@cp README.md puppeteerxml/README.md
-	@cp LICENCE.md puppeteerxml/LICENCE.md
+	@cp LICENSE.md puppeteerxml/LICENCE.md
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
 	@echo "The library is in 'puppeteerxml'."
 	@echo "-------------"
 
-tester: library
+tester: puppeteerxml
 	$(MAKE) release ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
 	@rm -f tester
-	@ln -s simplexpress-tester/bin/Release/puppeteerxml-tester tester
+	@ln -s puppeteerxml-tester/bin/Release/puppeteerxml-tester puppeteerxml-tester
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "PuppeteerXML Tester is in 'tester/bin/Release'."
+	@echo "PuppeteerXML Tester is in 'puppeteerxml-tester/bin/Release'."
 	@echo "The link './tester' has been created for convenience."
 	@echo "-------------"
 
-
-tester_debug: library_debug
-	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) -C tester
+tester_debug: puppeteerxml_debug
+	$(MAKE) debug ARCH=$(ARCH) CONFIG=$(CONFIG) SAN=$(SAN) -C puppeteerxml-tester
 	@rm -f tester_debug
-	@ln -s simplexpress-tester/bin/Debug/puppeteerxml-tester tester_debug
+	@ln -s puppeteerxml-tester/bin/Debug/puppeteerxml-tester tester_debug
 	@echo "-------------"
 	@echo "<<<<<<< FINISHED >>>>>>>"
-	@echo "PuppeteerXML Tester is in 'tester/bin/Debug'."
+	@echo "PuppeteerXML Tester is in 'puppeteerxml-tester/bin/Debug'."
 	@echo "The link './tester_debug' has been created for convenience."
 	@echo "-------------"
 
@@ -108,4 +114,4 @@ all: docs tester
 
 allfresh: cleanall all
 
-.PHONY: all allfresh clean cleandebug cleanrelease docs docs_pdf library library_debug ready tester tester_debug
+.PHONY: all allfresh clean cleandebug cleanrelease docs docs_pdf puppeteerxml puppeteerxml_debug ready tester tester_debug

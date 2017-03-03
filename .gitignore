@@ -7,10 +7,12 @@
 **/obj
 **/lib
 **/libs
-puppeteerxml/
-docs/build
-*.depend
-*.layout
+**/build
 **/build_temp
+puppeteerxml/
+!puppeteerxml-source/include/puppeteerxml
+docs/build
+tester
+tester_debug
 *.config
 !default.config

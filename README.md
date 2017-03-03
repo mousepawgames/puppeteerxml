@@ -35,11 +35,11 @@ All contributions are licensed to us under the
 
 PuppeteerXML is licenced under the BSD-3 License. (See LICENCE.md)
 
-The project is owned and maintained by [MousePaw Games][2].
+The project is owned and maintained by [MousePaw Media][2].
 
 [1]: http://www.mousepawgames.com/puppeteerxml
 [2]: http://www.mousepawgames.com/opensource
 [3]: http://www.mousepawgames.com/opensource#contribute
 [4]: http://www.mousepawgames.com/termsofdevelopment
-[5]: http://github.com/mousepawgames/puppeteerxml
-[6]: http://github.com/mousepawgames/puppeteerxml-git
+[5]: http://github.com/mousepawmedia/puppeteerxml
+[6]: http://github.com/mousepawmedia/pawlib
